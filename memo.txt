@@ -1,0 +1,8 @@
+ex1: GEN=feedforward(node=128), DIS=feedforward(input=songsize,node=128), songsize=128, initial_value=(epoch&individual)random, batchsize=64, GENSTEP=1, DISSTEP=1
+     もっともシンプルなモデル2個体がそれぞれ相手の歌をGENで真似しつつ，DISで自分の歌である確率を出力する。GENの学習には「相手の歌を真似する学習=相手のDISをだます学習」と「自分の歌を簡単に判別するための学習=自分の歌のDISの確率を上げる学習」
+ex2: GEN=LSTM(node=128), DIS=feedforward(input=songsize,node=128), songsize=128, initial_value=(epoch&individual)random, batchsize=64, GENSTEP=1, DISSTEP=1
+     GeneratorにLSTMを搭載したモデル2個体がそれぞれ相手の歌をGENで真似しつつ，DISで自分の歌である確率を出力する。GENの学習には「相手の歌を真似する学習=相手のDISをだます学習」と「自分の歌を簡単に判別するための学習=自分の歌のDISの確率を上げる学習」
+ex3: GEN=feedforward(node=128), DIS=feedforward(input=songsize, ,node=128), songsize=128, initial_value=(epoch&individual)random, batchsize=64, GENSTEP=1, DISSTEP=1
+     ex1の亜種で出力される歌をceilで-0.9, -0.8, ...,0.8, 0.9, 1.0に離散化してからDiscriminatorに入力
+ex4: GEN=feedforward(node=128), DIS=feedforward(input=songsize,node=128), songsize=128, initial_value=(epoch&individual)random, batchsize=64, GENSTEP=1, DISSTEP=1
+     逃げる追うのみの学習。BのGENの学習には「相手の歌を真似する学習=相手のDISをだます学習」、AのGENの学習には「自分の歌を簡単に判別するための学習=自分の歌のDISの確率を上げる学習」
